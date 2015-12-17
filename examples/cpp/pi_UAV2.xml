@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<R>1</R>
+<dt>.25</dt>
+<dtperstep>2</dtperstep>
+<H>5</H>
+<nu>.01</nu>
+<T>30</T>
+<seed>0</seed>
+<N>100</N>  
+<dimUAVx>4</dimUAVx>
+<dimUAVu>2</dimUAVu>
+<units>1</units>
+<takeoffx>4</takeoffx>
+<takeoffy>4</takeoffy>
+<takeoffz>4</takeoffz>
+<idunit>UAV2</idunit> 	

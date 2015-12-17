@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="windsorpark">
+    <static>true</static>
+    <link name="link">
+      <collision name="windsorpark_collision">
+        <geometry>
+          <heightmap>
+            <uri>model://windsorpark/materials/windsorpark-depth-small.tif</uri>
+            <size>450 450 100</size>
+            <pos>0 0 -5</pos>
+          </heightmap>
+        </geometry>
+      </collision>
+      <visual name="windsorpark_visual">
+        <geometry>
+          <heightmap>
+            <use_terrain_paging>false</use_terrain_paging>
+            <uri>model://windsorpark/materials/windsorpark-depth-small.tif</uri>
+            <size>450 450 100</size>
+            <pos>0 0 -5</pos>
+            <texture>
+              <diffuse>file://media/materials/textures/windsorpark-raster-small.tif</diffuse>
+              <normal>file://media/materials/textures/flat_normal.png</normal>
+              <size>450</size>
+            </texture>
+          </heightmap>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

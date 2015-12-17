@@ -1,0 +1,389 @@
+Special Licence - Non-Commercial     
+	 
+PARTIES
+
+ENVIRONMENT AGENCY whose principal office is at Horizon House, Deanery Road, Bristol, BS1 5AH ("The Agency") (1) and 
+University College London whose registered/principal office is at Department of Computer Science, Malet Place Engineering Building
+Gower Street, London, United Kingdom, WC1E 6BT ("the Licensee") (2) 
+
+BACKGROUND
+This licence applies if you are seeking permission for re-use of Agency Content by using it non-commercially.
+
+LICENCE
+We, the Environment Agency ("We" or "us"), and you, the recipient of the Licensed Content ("You") agree that:
+1.	This agreement (the "agreement") which is dated on the later of the two dates of signing below includes these paragraphs, the Schedules below, the Standard Terms and Conditions for an Environment Agency Intellectual Property Licence in Appendix 1 and Standard Definitions in Appendix 2.
+2.	We will provide you (if you do not already have a copy) with the Licensed Content.
+3.	You will pay us the Fees due under this agreement.
+4.	If it is not possible to interpret consistently the Special Conditions in Schedule 4 below and the Standard Terms and Conditions in Appendix 1 the Special Conditions will prevail.
+
+SCHEDULE 1 - Commencement Date, Term and Contact Details
+
+This agreement commences on 27/08/2014 until termination
+
+Next major review dates: 2013 for implementation on or after 1 January 2014, and 2014 for implementation on or after 1 January 2015
+The major licensing reviews aim to review all Agency licences and bring all licensees onto the same terms and conditions.  When the review occurs the new terms will replace the terms and conditions of this agreement; this does not affect your right to terminate this agreement.
+
+Operational contact (day to day) - ENVIRONMENT AGENCY
+
+Archive Data Team
+Geomatics
+Rivers House
+Lower Bristol Road
+Bath
+BA2 9ES
+
+01225 487650
+archived-lidardata@environment-agency.gov.uk
+
+Operational contact (day to day) - LICENSEE
+
+Andrew Symington
+University College London
+Department of Computer Science, Malet Place Engineering Building
+Gower Street
+London
+United Kingdom
+WC1E 6BT
+07986 182 270
+
+a.symington@ucl.ac.uk
+27/08/2014
+
+
+SCHEDULE 2 - Approved Use
+A. INTERNAL USE
+The following internal uses are licensed:
+
+�	Internal Use of any kind (including copying and adapting) of Licensed Content as long as it is Non-Commercial.
+�	Archival Use as defined in Appendix 2 as long as it is Non-Commercial.
+
+
+B. EXTERNAL USE AND PERMITTED SUBLICENSING
+
+�	Contractor Use as defined in Appendix 2.
+�	Regulatory Use as defined in Appendix 2.
+�	Fixed Image Publishing as defined in Appendix 2 as long as it is Non-Commercial.
+�	Supply to someone else for a use that you consider significantly helps you to achieve your statutory functions or public task (if you have these) as long as it is Non-Commercial.
+�	Supply to someone else for a Non-Commercial use that We consider significantly helps us to achieve Our statutory functions or public task and have listed below:
+a)	Not applicable.
+
+SCHEDULE 3 - Licensed Content
+This Schedule provides full details of the Licensed Content and also of Licence Fees for internal use of that Content and any special marginal costs of supply charges.  These fees are Content related and (together with Third Party Royalties in relation to products or external use identified in Schedule 2) comprise cost recovery charges that aim to recover our costs of reproducing and disseminating Content that we license. Different types of Content have different cost recovery based charges and the annual review will, inter alia, re-assess which charging band to apply and whether any increase is required to reflect the effect of inflation on our costs. Terminal discounts may be available for certain types of Content. Licence Fees for Internal use:
+
+�	are annual (apart from any costs of supply e.g. infrastructure set up), 
+�	are reviewed annually on 1st April,
+�	are subject to VAT and identified below inclusive of VAT,
+�	identify separately any Third Party Royalties that relate directly to use of Licensed Content.  These are the actual charges that We has to pay to third parties.  
+�	always, where ongoing, are due in respect of full Years, regardless of termination, Cessation, variation or expiry.
+
+1.	Not applicable to this licence
+ 
+2.   	SPECIAL CONTENT
+
+1 Number
+Not Applicable
+
+2 Name
+LIDAR Composite (November 2013)
+
+3 Description 	 
+Light Detection and Ranging (LIDAR) is an airborne mapping technique, which uses a laser to measure the distance between the aircraft and the ground.  Up to 100,000 measurements per second are made of the ground, allowing highly detailed terrain models to be generated at spatial resolutions of between 25cm and 2 metres. The Environment Agency's LIDAR data archive contains digital elevation data derived from surveys carried out since 1998.
+ 
+LIDAR composite data is available in ASCII and JPEG format. The ASCII format data is derived from a combination of all of our data which has been merged and re-sampled to give the best possible coverage. The Digital Surface Models include heights of objects, such as vehicles, buildings and vegetation, as well as the terrain surface. The Digital Terrain Model (DTM) is produced by removing objects from the Digital Surface Model. The JPEG format is a geo-referenced, shaded relief image only, which is colour coded for elevation.
+ 
+4 Content Type	
+Remote Survey Data
+
+5 Geographical Coverage 
+
+The data (ESRI ASCII GRID format)
+SU9671_DSM_1M,SU9672_DSM_1M,SU9671_DTM_1M,SU9672_DTM_1M
+
+
+6 - 8	These paragraphs are not applicable to this licence
+
+9 Format supplied
+ESRI ASCII Raster and/or Geo-Referenced JPEG (see Geographical Coverage)
+
+10 - 14	These paragraphs are not applicable to this licence
+
+15 Are there any known Third Party Rights?
+No
+
+16 One off cost of supply charges
+Not applicable
+
+17 Number of Terminals licensed (National Datasets only)
+Not applicable
+
+18 Licence Fees 
+£0.00
+
+19 Are there any special conditions added with specific reference to this Content?
+None
+
+20 Are there any information warnings added with specific reference to this Content?
+None
+
+21 Full details/attributes
+Not applicable
+
+Open Content
+Any designated EA Open Content used by You, however it has come into your possession.
+
+SCHEDULE 4 - Special Conditions
+
+S2       Special Conditions applicable to all Non-Commercial Licensees
+S2.1	You shall when supplying Licensed Content externally
+	- take into account any relevant Information Warning,
+	- include the most up to date version of Licensed Content available to you,
+	- acknowledge the Agency as the relevant intellectual property right owner.
+S2.2	Maximum liability in Standard Condition 8 shall be replaced by "one hundred thousand pounds".
+S2.3 	The provisions of Standard Condition 13 in respect of consequences of termination etc shall only apply to Archival Use at the end of the permitted period of Archival Use and the EULA provisions of Standard Condition 6 shall likewise not require Licensed Content to be destroyed prior to the expiry of any Archival Use permission granted by you.
+S2.4  A person to whom you supply Licensed Content by way of permitted External Use must only make Internal Non-Commercial Use of that Content.
+
+SCHEDULE 5 - Information Warning
+None
+
+Signed on behalf of Environment Agency
+Archive Data Team
+Geomatics 
+Environment Agency 
+Rivers House 
+Lower Bristol Road 
+Bath, BA2 9ES  
+
+27/08/2014
+
+Signed on behalf of the Licensee
+Andrew Symington
+University College London
+Department of Computer Science, Malet Place Engineering Building
+Gower Street
+London
+United Kingdom
+WC1E 6BT
+
+27/08/2014
+
+ 
+Appendix 1 - Standard terms and conditions for an Environment Agency Intellectual Property Licence  
+1.  	Definitions 
+In this agreement the definitions in Appendix 2 shall apply.
+2.	Interpretation
+2.1	a reference to any statute, statutory provision or statutory instrument includes a reference to all rules and regulations made under it or them as from time to time amended, consolidated or re-enacted; 
+2.2	reference to any person includes any legal entity, including without limitation a natural person or incorporated entity;
+2.3	words importing a singular include the plural and vice versa;
+2.4	The headings in this Agreement are for ease of reference only.
+3.	Term
+The period of this agreement shall be as specified in Schedule 1 at the end of which it will expire automatically without notice.
+4.	Supply of Licensed Content to the Licensee
+Where Licensed Content replaces earlier Content supplied the Licensee shall not use that earlier Content otherwise than for Archival Use;
+5   	 Licence 
+In consideration of the mutual obligations in this agreement and the payment (if applicable) by the Licensee of the Fees the Agency hereby grants to the Licensee personally ( and not to any affiliated company or organisation) a non-transferable, non-exclusive revocable worldwide licence subject to the terms of this agreement to make the uses and to sublicense as specified in the Schedule 2 and to take any copies of the Licensed Content reasonably needed in connection with licensed use including backup copies.
+6.	Obligations of the Parties
+6.1	The Licensee shall:
+LICENSED CONTENT
+6.1.1.	Not supply to another person Licensed Content or any other Agency Content or anything Derived therefrom (but this does not prohibit anything not Derived), unless required by law, other than as licensed by the Agency and accompanied by appropriate acknowledgement and attribution of the Agency's contribution and ownership of Intellectual Property Rights and in particular ensure that any web hosting or web mapping services are consistent with this obligation and not given any greater licence to use the Licensed Content than is permitted by way of Contractor Use;
+6.1.2.	comply with any Terminal Use Restriction;
+6.1.3.	take all reasonable technical, contractual and other security measures to protect the integrity and security of Licensed Content and to prevent any use of the Licensed Content contrary to this agreement and any breach of this sub-condition which has a demonstrable effect shall be capable of being treated as a material breach of this agreement;
+PUBLICITY & MARKETING
+6.1.4.	other than as required by condition 6.1.1, not refer to the Agency in any marketing or publicity material without prior approval of the Agency in writing and not use any Licensed Content in such material unless licensed herein;
+END USER TERMS AND CONDITIONS
+6.1.5.	ensure that any supply of Licensed Content to a third party in pursuance of this agreement is on the terms of an EULA which prohibits any External Use that is not separately licensed by the Agency and requires As-Is or Copy Derived Licensed Content to be destroyed at the end of the term of the EULA; 
+COMPLIANCE WITH THE PRINCIPLES
+6.1.6.	do nothing which might contravene the Principles and any breach of this sub-condition which has a demonstrable effect shall be a material breach of this agreement provided that provision of truthful responses to enquiries put to the Licensee which are purely factual in nature shall only be a breach if contrary to condition 11;
+NOTIFICATIONS BY THE LICENSEE
+6.1.7.	The Licensee will notify the Agency if: 
+a.	it becomes aware that it is in breach of the licence agreement,
+b.	it suspects or discovers any possible infringement of the Agency's Intellectual Property Rights in the Licensed Content by a third party, 
+c.	it suspects or discovers that use of the Licensed Content might be an infringement of any third party's Intellectual Property Rights or of any third party's contractual rights derived therefrom or be any other breach of confidentiality or statute, 
+d.	it receives any Third Party Claim or a significant complaint or report in connection with this agreement or the Licensed Content and will, subject to any legally binding confidentiality, supply copies of any relevant documentation to the Agency.
+6.2	The Agency shall:
+6.2.1	supply to the Licensee such information and assistance as the Licensee may reasonably request, for the purposes of this agreement in connection with the processes and procedures used to create the Licensed Content unless such information is confidential to the Agency or supply would breach any intellectual property rights, contractual restrictions or other third party confidentiality;
+6.2.2	treat equitably the Licensee and other comparable licensees. 
+7.	Payment
+7.1	Fees are as detailed in Schedules 2 and 3 and are, subject to any Special Conditions, payable in advance of this agreement. 
+7.2	Where Fees are payable, the Licensee shall keep true, accurate and sufficient accounts and records to enable the amount of all payments required under this agreement to be determined.  The Licensee shall keep such accounts and records during the life of this agreement and six years after its termination or expiry.
+
+8.	Liability
+8.1	QUALITY AND FITNESS FOR PURPOSE
+The Agency does not warrant that the Licensed Content will always be accurate, complete or up to date or that the Licensed Content will provide any particular facilities or functions or be suitable for any particular purpose.  The Licensee must ensure that the Licensed Content meets its needs and is entirely responsible for the consequences of any use of the Licensed Content.  
+8.2	ELECTRONIC FORMAT
+If an electronic format has been used, the Agency applies reasonable endeavours to ensure that but cannot guarantee that the media on which the Licensed Content is provided will always be free from defects, computer viruses, worms, Trojan horses, software locks or other similar code of a destructive or unwelcome nature. The Licensee should carry out all necessary checks prior to loading the Licensed Content on to its computer system.
+8.3	ECONOMIC AND INDIRECT LOSS
+Other than in respect of Condition 11, compliance with the Principles and the warranty in condition10, neither party shall be liable to the other or any other person (whether in contract or in negligence or in other tort or otherwise) for:
+8.3.1.	any economic losses (including without limitation loss of revenues, profits, contracts, business or anticipated savings) other than Fees; or
+8.3.2.	any loss of goodwill or reputation; or
+8.3.3.	any special, indirect or consequential losses in any case whether or not such losses were within the contemplation of the parties at the date of this Licence (including loss of business, profit, reputation or goodwill) arising out of or in connection with this agreement or its subject matter.
+8.4	MAXIMUM LIABILITY
+The Parties' maximum aggregate liability to the other (including legal costs) in connection with this agreement shall not (apart from payment of Fees and the indemnities in condition 17) exceed the total sum of Fees due under this agreement or such other sum as shall be indicated in Special Conditions.  
+8.5	NOTICE OF CLAIMS
+Neither party shall be liable for any claim between the parties (not being in relation to a Third Party Claim) arising under this agreement unless Notice of the claim is given to the other within six months of becoming aware of the circumstances giving rise to such claim, or of such time as the relevant party ought reasonably to have become aware of such circumstances.
+8.6	DEFECTS IN OWNERSHIP
+The Agency shall not be liable under this agreement for any defect in its Intellectual Property Rights to the Licensed Content if, both: 
+8.6.1	it has used reasonable endeavours to ensure that relevant numbered section in Schedule 3 is in the generality the property of or licensed to the Agency; and
+8.6.2	after the application of the provisions in condition 10 on remedying defects, such defect would not require the withdrawal of that numbered section or a significant part thereof, it being accepted that less than five percent (5%) (measured either as to value, geographically, or by quantity) would not be significant.
+8.7	DEATH AND PERSONAL INJURY
+Nothing in this condition 8 shall limit or exclude either party's liability for death or personal injury arising from its negligence.
+9.	Representations
+Except as expressly provided in this agreement, all representations, conditions and warranties whether express or implied (by statute or otherwise) are hereby excluded to the fullest extent permitted by law provided that this shall not exclude statutory or common law rights in respect of negligence.
+10.	Intellectual Property Rights
+10.1	No Intellectual Property Rights are transferred or licensed to the Licensee save those which are expressly provided in this agreement .
+10.2	The Agency warrants that subject to the provisions on defects in ownership contained in condition 8 it has all other powers and rights necessary to grant to the Licensee the licences set out in condition 5.
+10.3	If any use of any part of the Licensed Content in accordance with this agreement infringes any Intellectual Property Rights the Agency shall use all reasonable endeavours to obtain the right (without charge) for the Licensee to continue to use and to distribute the infringing Content If however the Agency is unable to do this, it shall use all reasonable endeavours to modify or replace that Content so as to be as close to the usefulness of the original Licensed Content as reasonably possible and (if this is not possible) it may remove the infringing Content from Schedule 3.
+10.4	Neither party shall be entitled to bring an action for specific performance of the other party's obligations under this agreement where the performance of such obligation would be in breach of third party Intellectual Property Rights.
+11   	Confidentiality
+11.1  The Licensee and the Agency agree to keep Confidential Information in strict confidence and secrecy; to restrict the disclosure of any part of Confidential Information to such of their respective employees, agents and contractors who need access to it to enable them to perform their obligations under or in connection with this agreement and to bring to the attention of such persons the duty of confidentiality under this condition before allowing them access to Confidential Information unless they are already bound by alternative equivalent obligations; and not to disclose any Confidential Information to any other third parties without the prior written consent of the other.
+11.2  This condition 11 shall survive the expiry or termination of this agreement
+11.3    This condition 11 shall not apply to Confidential Information:
+11.3.1	which when it was disclosed was in the public domain otherwise than because of a breach of an obligation of confidentiality; or
+11.3.2	that a party could be required to disclose by law; or
+11.3.3	that has been disclosed in accordance with the Public Interest Disclosure Act 1998, the Freedom of Information Act 2000, the Environmental Information Regulations 2004 or the Re-use of Public Sector Information Regulations 2005; or
+11.3.4	received by a party from a third party at liberty to disclose it; or
+11.3.5	supplied to a third party whose Intellectual Property Rights have been used in connection with the Licensed Content and who has reasonably asked for such Confidential Information in order to verify payments due to them.
+12.	Termination
+12.1	The Licensee shall be entitled to terminate this agreement by 20 Working Days' Notice for any reason. 
+12.2	The Agency shall be entitled to terminate this agreement by 20 Working Days Notice identifying the relevant reasons if the Licensee is in material breach of any of the terms of this agreement, or has not fewer than 5 times in any 12 month period committed a non-material breach of any of the terms of this agreement (and, in the case of a breach capable of remedy, the notice period will not commence if the Licensee remedies that breach in such manner as described in the notice within 20 Working Days); or if the Licensee undergoes a change of ownership or control to which the Agency has reasonably objected within 20 Working Days of becoming aware of such change, or if a resolution is passed or an order is made for the winding up of the Licensee (save for the purpose of a bona fide re-construction or amalgamation) or the Licensee becomes subject to an administration order, or a receiver or administrative receiver is appointed over any of the Licensee's property or assets, or the Licensee is dissolved;
+12.3	The rights to terminate this agreement given by this condition 12 shall be without prejudice to any other right or remedy of either party in respect of the breach concerned (if any) or any other breach.
+13.	Consequences of Termination
+13.1	On expiry, Cessation or termination of this agreement the Licensee's entitlement to use the Licensed Content shall cease.
+13.2	All copies of the Licensed Content in the Licensee's (or its contractors') possession shall be destroyed unless it has been Process Derived.
+13.3	Continued use by an End User of Licensed Content supplied under this agreement prior to expiry or termination is licensed by the Agency for the remainder of the period of any EULA that is compliant with this agreement. 
+13.4	This condition shall survive termination or expiry of this agreement. 
+14.	Force Majeure and Agency's Statutory Obligations
+14.1	Neither party shall be liable to the other for any delay in or failure of performance of its obligations under this agreement (other than an obligation to pay money) arising from any cause beyond its reasonable control including, without limitation, any of the following: Act of God, governmental act (including acts of regulatory authorities), statutory obligation, industrial action, war, fire, flood, explosion or civil commotion ("Force Majeure").
+14.2	If a party is affected by Force Majeure it shall forthwith give Notice to the other party of the nature and extent of such Force Majeure. 
+14.3	If Force Majeure prevails for a continuous period in excess of 20 Working Days the parties shall enter into bona fide discussions with a view to alleviating its effects or to agreeing upon such alternative arrangements as may be fair and reasonable.
+14.4	The Agency shall not be liable to the Licensee for delay in performing its obligations under this agreement if such delay arises out of the overriding need to comply with its statutory obligations.
+15.	Assignment
+The Licensee may not transfer or in any other way make over to any third party the benefit of this agreement either in whole or in part without the express prior written consent of the Agency such consent not to be unreasonably withheld or delayed. 
+16.	Waiver
+Failure by either party to exercise or enforce any rights available to it, or any forbearance, delay or grant of indulgence, will not (subject to condition 17 below) be construed as a waiver of its rights under this agreement or otherwise.
+17.	Indemnities
+17.1	Where Commercial Use is licensed herein each party shall indemnify the other against all costs (including reasonable and proper legal costs), claims, damages, demands and expenses arising directly or indirectly out of any Third Party Claim in accordance with the following principles:
+17.1.1	the Licensee shall be responsible for any claims which arise from any breach of the agreement by the Licensee;  
+17.1.2	the Agency shall, subject to the provisions on defects in ownership in condition 8, be responsible for any claims that use of the Licensed Content infringes any United Kingdom Intellectual Property Rights or has been supplied in breach of a legally binding confidentiality;
+17.1.3	nothing in these indemnities shall have the effect of requiring one party to indemnify the other to the extent that the other has been negligent or in wilful default;
+17.2	The Agency or the Licensee (as the case may be) shall:
+17.2.1	forthwith on receipt of a written request from the Licensee or the Agency (as the case may be) give to the other the sole conduct of the defence and settlement of any such claim and at no time admit liability; and
+17.2.2	act in such a way as to mitigate their losses; and
+17.2.3	act in accordance with the reasonable instructions of the other and give all such assistance as it may reasonably require to defend or settle such claim.
+18.	Entire agreement
+This agreement constitutes the entire agreement between the parties and supersedes all oral or written agreements, representations, understandings or arrangements relating to its subject matter other than subsequent written alterations to this agreement mutually agreed by the parties in accordance with condition 20 below.  The parties irrevocably and unconditionally waive any right to rescind this agreement by virtue of any misrepresentation and to claim damages for any misrepresentation save in each case where such misrepresentation was made fraudulently.
+19.	Severance
+If any part of the agreement is found by a court of competent jurisdiction or other competent authority to be unenforceable, then that part will be severed from the remainder of the agreement which will continue to be valid and enforceable to the fullest extent permitted by law.
+20.	Variation
+Variations must be agreed by both parties in writing signed by or on behalf of the Agency and the Licensee and neither party shall unreasonably refuse or delay such requests for a variation. 
+21.	Notices and Consents
+21.1	Notices under this agreement shall be written, in English, in advance by at least the period specified in this agreement and shall be sent to the address and contact of the party as set out in this agreement (or such other address in the United Kingdom as either party may notify to the other) in accordance with this condition).
+21.2	Notices may be sent by first class mail (or other comparable and reputable postal services) or by email. 
+21.3	Correctly addressed notices sent by mail shall be deemed to be delivered 2 Working Days after posting.
+21.4	Correctly addressed emails shall be deemed to be delivered when sent provided that a confirmation copy is sent by first class mail within 24 (twenty four) hours.
+21.5	Any consent, approval or agreement given pursuant to this agreement shall be in writing and in the case of the Licensee shall be signed in accordance with the contacts records in Schedule 1, or any variation thereof.
+22.	Relationship of Parties
+Nothing in this agreement shall create a partnership or joint venture between the parties, nor shall this agreement constitute one party the agent of the other or give either party authority to act or hold itself out as having authority to act on behalf of the other; or confer or purport to confer on any third party any benefit or rights in respect of the terms of this agreement.
+23.	Dispute Resolution
+23.1	All disputes under or in connection with this agreement shall be referred first to the parties' respective managers with responsibility for the day to day management of this agreement. 
+23.2 	Either party may thereafter initiate, at any time, the other party's standard internal complaints process (or if none exists refer the dispute up to the next level of management).
+23.3 	After the relevant complaints procedure or referral is completed (within the relevant timescales set out therein or in the absence thereof 20 Working Days), the dispute may be referred by either party to the parties' respective Chief Executive Officers or equivalent. 
+23.4 	If the parties' respective Chief Executive Officers are unable to resolve the dispute within 10 Working Days, the dispute shall be referred to the Centre for Dispute Resolution who shall appoint a mediator and the parties shall then submit to the mediator's supervision of the resolution of the dispute. 
+23.5 	Recourse to this dispute resolution procedure shall be binding on the parties as to submission to the mediation but not as to its outcome.  Accordingly all negotiations connected with the dispute shall be conducted in strict confidence and without prejudice to the rights of the parties in any future legal proceedings.  
+23.6 	Except for any party's right to seek interlocutory relief in the courts, no party may commence other legal proceedings under the jurisdiction of the courts or any other form of arb0tration until 20 Working Days after the appointment of the mediator. 
+23.7 	If, with the assistance of the mediator, the parties reach a settlement, such settlement shall be put in writing and, once signed by a duly authorised representative of each of the parties, shall remain binding on the parties.
+23.8  The parties shall bear their own legal costs of this dispute resolution procedure, but the costs and expenses of mediation shall be borne by the parties equally. 
+23.9	Nothing in this condition shall restrict the Parties' rights to seek interim relief. 
+24.	Rights of Third Parties
+Save where this Agreement expressly provides to the contrary, for the purposes of the Contracts (Rights of Third Parties) Act 1999 this Agreement is not intended to, 	and does not, give any person who is not a party to it any right to enforce any of its provisions.
+25.	Governing Law
+This agreement shall be governed and construed in accordance with English law and the parties submit to the exclusive jurisdiction of the English courts in the event of a dispute. 
+
+APPENDIX 2 - DEFINITIONS
+NB core definitions are in standard font.
+ 
+"Archival Use" means use after expiry, Cessation or termination that comprises retention Internally by the Licensee or its contractors of copies of the Licensed Content for a period not exceeding six years and only to the extent necessary to answer technical support questions or to comply with any statutory or regulatory requirement.
+"As-Is" This means a copy of the whole or Part of the original Content that is unaltered and un-adapted and not merged with other Content other than by: 
+-        layout, font, size, colour and other minor display changes, 
+-        digital file compression, 
+-        putting into an encrypted or protected format such as a protected ZIP file or a locked pdf but not un-encrypting original Information that is already in a protected format, 
+-        bundling with other Content or with a cover sheet provided that the original Content remains discrete 
+-        changing into a different format. 
+"Cessation" means removal or cessation of use of particular Licensed Content or an Approved External Use from the scope of this agreement. 
+"Co-Deliverer" means a person who is supplied by a public or not for profit body with Content for purposes all of which that body considers to be of significant importance to the achievement of that body's statutory functions, where that person supplied with Content uses it only for non-commercial purposes.
+"Commercial" means 
+-        internal Use within a Commercial Body except to the extent that such use relates to statutory functions of a body subject to the Environmental Information Regulations 2004 or comprises public task functions, 
+-        offering a product or service containing Licensed Content for direct monetary compensation such as the sale of a book or newsletter with a cover charge even if it does not cover all costs but not including supply by a public sector body of products or services to other UK and EU public sector bodies or in pursuance of international treaties or conventions for a charge that does not exceed marginal costs (or costs required to be charged by legislation or binding government rules) where those bodies in receipt of such products or services are permitted to use only for statutory or public task purposes, or
+-        offering a product or service based on Licensed Content for indirect commercial advantage by a Commercial Body.
+"Commercial Body" means an organisation that is primarily engaged in a profession, even if it has public task functions (unless it is a body that is prevented by its set up from distributing any of its income whether as money or in any other form to its Committee, board or members and limits payments to employees to salaries and a bonus scheme that is not designed to distribute all profits or surplus income but has provisions for distribution of surplus income for some public good (usually charitable) purpose ) or is engaged in trade or commerce.
+"Confidential Information" means any information relating to this agreement (but not the Licensed Content unless we say so expressly) disclosed by one party to the other under this agreement or coming to the Licensee's or the Agency's attention directly or indirectly as a result of this agreement whether orally or in writing where such information is expressly stated to be confidential or ought reasonably to be regarded as confidential.
+"Consistency Principle" means the principle whereby End Users of Content receive information that is the same from whichever person they obtain it.
+"Content" has the same meaning as in the Re-Use of Public Sector Information Regulations 2005, including also computer programs and other intellectual property rights.
+"Contractor Use" means passing of Content to a person (Contractor) who is contracted to provide services to the Content provider, when:
+-        use is limited to the purposes of that contract, and
+-        all terms of the original licence are applied to the Contractor, and
+-        the person letting the contract remains responsible for those terms, and
+-        the Contractor does not pass the Content to any person other than the Licensee or a subcontractor who complies with these conditions, and
+-        the Contractor destroys all copies of the original Licensed Content supplied (and anything Copy Derived from that) at the end of the contract.
+"Copy Derived" means the process of creating something from Content that is not the result of As-Is use and either:
+-        includes a copy of that Content as a whole or as a Part, and/or
+-        that Content can be reverse engineered from it, by which is meant the Content can be recreated by technical or other means in full or in Part from a derivative or a series of similar derivatives of it, and/or
+-        is a derivative that is Substitutable.
+"Derived" unless the context requires otherwise means Copy Derived or Process Derived.
+"e-Learning" means a Process based electronic system of teach yourself training. 
+"End User" means any person using Content supplied by way of licensed External Use for its own Internal Use, Standard Permitted External Use or for Professional Use.
+"End User Licence Agreement" and "EULA" mean the terms under which the Licensee supplies Licensed Content to End Users (see condition 6).
+"External As-is Use" means use that is not Internal Use or Standard Permitted External Use that involves the creation of As-Is Licensed Content.
+"External Derived Use" means use that is not Internal Use or Standard Permitted External Use that involves the creation of Derived Licensed Content. 
+"External Use" means External As-Is Use and/or External Derived Use or Standard Permitted External Use.
+"Fees" means Licence Fees and Royalty Charges.
+"Fixed Format" means Content that is formatted in such a way as to be static and unalterable (or not easily alterable without the loading of special software). It will typically include hard copy, portable document format (pdf), image format (such as jpeg, gif, tiff and bmp) and video format (such as mpeg, avi and wmv).
+"Fixed Image Publishing" means general distribution of Licensed Content comprising a still or moving image for viewing by the public where the following conditions apply:
+�	either:
+-        it is a sample or extract that does not exceed 5% of the original specific Licensed Content or anything Copy Derived therefrom displayed in a Non-Commercial. website, social media pages or other electronic or hard copy publication operated by the Licensee (" Non-Commercial Publication"), or 
+-        it is Process Derived Content used in a Non-Commercial Publication, or
+-        it is Licensed Content or anything derived therefrom displayed in any Media Publication to provided that it is not a specific information service or in any other way tailored to the needs of a particular customer or locality,
+�	there are no use rights granted to end users other than to view and all reasonable technical measures are taken to prevent more than viewing, and
+�	there is appropriate attribution in respect of the Environment Agency contribution, and
+�	it is supplied with any Information Warning we have identified as applicable to that Content (or such other wording as we may agree).
+"Information Warning" means information required by Schedule 5 to be taken into account when using the Information.
+"Intellectual Property Rights" means any patent, copyright, database right, registered design, trademark or other industrial or intellectual property together with any applications for any of the foregoing.
+"Internal Use" means use of Licensed Content by the Licensee or their employees (or in the case of an academic body, their students) that does not involve a supply of Licensed Content to anyone else.
+"Licence Fees" means the Agency's marginal costs of supply charges and licensing charges as identified in Schedule 3 together with Third Party Royalties.
+"Licensed Content" means the Content identified in Schedule 3 and, except where the context requires otherwise anything Derived from it.
+"Licensee Update Date" means the date or period identified in Schedule 3 when an Update is made for the Licensee. 
+"Licensee Update Frequency" means the frequency with which the Licensee is supplied Updates to the Licensed Content.
+"Licensee Update Supply Date" means the latest date identified in Schedule 3 by which the Agency will supply an update to the Licensee.
+"Media Publication" means a publication whether printed or electronic, and whether or not there are any charges, where no use rights are granted to end users other than to read and all reasonable technical measures are taken to prevent more than viewing (generally only applicable to electronic data), that is either 
+�	a newspaper, or
+�	a current affairs publication issued at least three times a year, or
+�	 an academic, literary, trade or technical journal whose primary purpose is the advancement of or criticism or review of the arts, science or technology and issued at least three times a year, or
+�	any factual documentary type programmes or materials for the purposes of educating the public generally, on media such as television, distributed disks, films, video on demand or online media.
+"No Detriment Principle" means that any intended use of Licensed Content must not represent a risk of being misleading to the End User, detriment to the Agency's ability to achieve its objectives, detriment to the environment, including the risk of reduced future enhancement, or being prejudicial to the effective management of Content held by the Agency. 
+"Non-Commercial" means use that is not Commercial.
+"Notice" means a notice given in accordance with condition 21.
+"Part" In relation to Content means any discrete part of the original Content that is contained in a larger set of Content.
+"Principles" means the Transparency Principle, the Consistency Principle and the No Detriment Principle.
+"Process" means a rules based procedure that includes some user input such as:
+methods, techniques, expert systems, flow charts, etc whether or not electronic, computer programs, apps, macros, artifacts, and other electronic tools and utilities etc.
+"Process Derived" describes an output derived from Content that is not the result of As-Is or Copy Derived use that requires the physical input of that Content into a Process that involves some form of copying and/or manipulation (usually this will involve modelling).
+"Professional Use" means, in respect of a particular client and particular transaction or matter, supply by a Consultant providing professional services to that client of As-Is Fixed Format Environment Agency Content as a necessary but minor background part of those service, where:
+a)  the Content is obtained directly from the Agency (and any applicable Licence Fees paid) or by way of an Approved Product or a Copy Derived derivative of it, as and when needed for and on behalf of a particular client; and 
+b)  the Content supplied to a client relates to a site in single ownership and can include any other Content necessary for an environmental assessment of that site; and 
+c)  the client is not granted any licence to copy, adapt or sub-license the Content other than to take one back up copy or to supply As-Is Fixed Format copies necessary for that client matter (or the Consultant can supply such copies on behalf of the client) provided that no charge is made for such supplies; and
+d)  no charge is made by the Consultant to its client for the Content other than a charge for professional services and disbursements; and 
+e)  Content is attributed as required by the Environment Agency. 
+ Note: The marginal costs of a UK trading fund (or any similar government body) can include all charges that are required by legislation or binding government rules in relation to making supplies to other public sector bodies. 
+"Regulatory Use" means inclusion by or on behalf of a person of Fixed Format Content either As-Is or Derived in any documentation where this is reasonably necessary in connection with any process of a court, tribunal or regulatory body (but not including a trade association) affecting that person.
+"Software" has the same meaning as "Process". 
+"Standard Condition" means one or more of the Standard Terms and Conditions in Appendix 1 also referred individually as a numbered "condition".
+"Standard Permitted External Use" means Contractor Use, Regulatory Use or Fixed Image Publishing.
+"Substitutable" in relation to Content means that a derivative of original Content serves substantially the same purpose as the original Content, has not been changed to something different and is effectively imparting the same or substantially the same knowledge.
+"Terminal Use Restriction" means the limit specified in Schedule 3 on the number of servers, desktop or portable computers, personal digital assistants, mobile phones or any other electronic means of access, permitted in a particular Year to gain direct access to (this includes viewing) the Licensed Content or anything Copy Derived from it. 
+"Third Party Claim" means any claim for compensation or other legal remedy (including remedies in respect of negligence) in connection with this agreement or the Licensed Content by any person other than the Licensee or the Agency.
+"Third Party Royalties" means the charges payable to third parties as identified in and Schedule 2 (External Use) and Schedule 3 (Internal Use).
+"Transparency Principle" means the principle that End Users should not be misled in any way about matters relating to the Licensed Content which affect its potential usefulness or as regards its source.
+"Updates" means, where indicated in Schedule 3 as included, updated copies of Licensed Content that contain replacements for existing Licensed Content that are made by the Agency to reflect quality improvements or the elimination of errors, or additional within the same description, derived from an extract of the relevant Agency primary source.  An Update collates information from the relevant Agency primary Content source and can comprise either the supply of specific replacement Content or a full replacement set of Content.
+"Value Added Reseller" and "VAR" means a person who supplies an Approved Product to third parties on a commercial basis with added value through additional information, facilities or services. 
+"Working Day" means Monday to Friday inclusive from 9:00am to 5:30pm, excluding UK public holidays.
+"written" includes fax and email and any other electronic text.
+"Year" means each period of twelve months commencing on the date particular Licensed Content is first licensed under this agreement and each anniversary thereof.

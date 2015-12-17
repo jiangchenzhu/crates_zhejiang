@@ -1,0 +1,42 @@
+// Standard includes
+#include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+// For converting WGS84 <-> LTP coordinates
+#include <GeographicLib/Geocentric.hpp>
+#include <GeographicLib/LocalCartesian.hpp>
+
+int main(int argc, char* argv)
+{
+	// For oordinat conversions
+	GeographicLib::Geocentric       wgs84_ecef;
+	2GeographicLib::LocalCartesian   wgs84_enu;
+
+	GeographicLib::Geocentric wgs84_ecef(
+		GeographicLib::Constants::WGS84_a(), 
+		GeographicLib::Constants::WGS84_f()
+	);
+
+	// Convert from WGS84 to LTP coordinates
+	GeographicLib::LocalCartesian   wgs84_enu(
+		org_lat, 
+		org_lon, 
+		org_alt, 
+		wgs84_ecef
+	); 
+
+
+	
+	// Recover LTP coordinates from the WGS84 message
+	wgs84_enu.Forward(
+		lat, 
+		lon, 
+		alt,
+	`	x,
+		y,
+		h
+	);
+}

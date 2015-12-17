@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<R>1</R>
+<dt>.25</dt>
+<dtperstep>4</dtperstep>
+<H>4</H>
+<nu>.01</nu>
+<T>30</T>
+<seed>0</seed>
+<N>10000</N>  
+<dimUAVx>4</dimUAVx>
+<dimUAVu>2</dimUAVu>
+<units>5</units>
+<takeoffz>
+	<height>10</height>
+	<height>13</height>
+	<height>16</height>
+	<height>19</height>
+	<height>22</height>
+</takeoffz>
+<idunits>
+	<id>UAV0</id>
+	<id>UAV1</id>
+	<id>UAV2</id>
+	<id>UAV3</id>
+	<id>UAV4</id>
+</idunits>
+<holdingp>
+	<x>0.0</x>
+	<y>0.0</y>
+	<radius>7.0</radius>
+	<minv>1.0</minv>
+	<maxv>3.0</maxv>
+	<hit>5.0</hit>
+</holdingp>

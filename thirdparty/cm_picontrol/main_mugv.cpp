@@ -1,0 +1,553 @@
+// General ROS functionality
+#include <ros/ros.h>
+
+// PI
+#include "pi/PIController.h"
+#include "pi/global.h"
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/foreach.hpp> 
+#include <boost/regex.hpp>
+#include <boost/thread/mutex.hpp>
+#include "std_msgs/String.h"
+#include <algorithm>
+// END PI
+
+#include <gsl/gsl_rng.h>
+#include <gsl/gsl_randist.h>
+
+// UGV services
+#include <hal_ugv/State.h>
+
+// UGV controllers
+#include <hal_ugv/Hover.h>
+#include <hal_ugv/control/Takeoff.h>
+#include <hal_ugv/control/VelocityHeight.h>
+
+#include <hal_ugv/GetEstimate.h>
+#include <hal_ugv/SetTruth.h>
+
+#include <math.h>
+
+#define EPS_POS			5e-1	// epsilon position
+#define EPS_VEL			1e-3	// epsilon position
+
+//#define DEBUG_INFO 0
+
+typedef enum { IDLE, TAKEOFF, VELHEIGHT, HOVER, WAYPOINT, OTHER } FSM;
+
+using namespace std;
+
+vector<ros::ServiceClient> srvTakeOff;
+vector<ros::ServiceClient> srvHover;
+vector<ros::ServiceClient> srvVelocityHeight;
+
+vector<FSM> state_FSM; // Finite State Machine state (TODO: get the controller from the msg)  
+vector<double> jstate;
+
+// used to safely exit the program
+bool stop;
+bool turn, go,onekick;
+bool oneshot;
+unsigned long int seed = 0;
+gsl_rng *rnd;				// Random seed.
+bool arg_seed = false;
+
+// PI
+PIController pi;
+// END PI
+
+vector<double> heights; 
+vector<string> idunits;
+int units;
+vector<string> oidunits;
+int ounits;
+
+boost::mutex guard;
+
+double period=20.0;
+
+// Rotation from body to navigation frame
+void b2n(double rot[3], double vec[3])
+{
+    double tmp[3];
+    for (int i = 0; i < 3; i++)
+        tmp[i] = vec[i];
+    double sph = sin(rot[0]); double cph = cos(rot[0]);
+    double sth = sin(rot[1]); double cth = cos(rot[1]);
+    double sps = sin(rot[2]); double cps = cos(rot[2]);
+    double dcm[3][3];
+    dcm[0][0] = cth*cps;
+    dcm[1][0] = cth*sps;
+    dcm[2][0] = -sth;
+    dcm[0][1] = sph*sth*cps - cph*sps;
+    dcm[1][1] = sph*sth*sps + cph*cps;
+    dcm[2][1] = sph*cth;
+    dcm[0][2] = cph*sth*cps + sph*sps;
+    dcm[1][2] = cph*sth*sps - sph*cps;
+    dcm[2][2] = cph*cth;
+    for (int i = 0; i < 3; i++)
+    {
+        vec[i] = 0;
+        for (int j = 0; j < 3; j++)
+            vec[i] += dcm[i][j] * tmp[j];
+    }
+}
+
+// Rotation from navigation to body frame
+void n2b(double rot[3], double vec[3])
+{
+    double tmp[3];
+    for (int i = 0; i < 3; i++)
+        tmp[i] = vec[i];
+    double sph = sin(rot[0]); double cph = cos(rot[0]);
+    double sth = sin(rot[1]); double cth = cos(rot[1]); 
+    double sps = sin(rot[2]); double cps = cos(rot[2]);
+    double dcm[3][3];
+    dcm[0][0] = cth*cps;
+    dcm[0][1] = cth*sps;
+    dcm[0][2] = -sth;
+    dcm[1][0] = sph*sth*cps - cph*sps;
+    dcm[1][1] = sph*sth*sps + cph*cps;
+    dcm[1][2] = sph*cth;
+    dcm[2][0] = cph*sth*cps + sph*sps;
+    dcm[2][1] = cph*sth*sps - sph*cps;
+    dcm[2][2] = cph*cth;
+    for (int i = 0; i < 3; i++)
+    {   
+        vec[i] = 0;
+        for (int j = 0; j < 3; j++)
+            vec[i] += dcm[i][j] * tmp[j];
+    }
+}
+
+// Callback for ugv state
+void StateCallback(int unit, const hal_ugv::State::ConstPtr& msg) 
+{
+	if (msg->controller == (std::string) "Hover" || msg->controller == (std::string) "VelocityHeight")
+	{
+		state_FSM[unit]  = HOVER;
+				// angles of the platform
+		double rot[3] = {msg->roll, msg->pitch, msg->yaw};
+		
+		// put BODY velocity in vel, and rotate to NAVIGATIONAL velocity
+		double vel[3] = {msg->u, msg->v, msg->w};
+		b2n(rot, vel);
+
+		// update internal state
+		jstate[unit*4+0] = msg->x;
+		jstate[unit*4+1] = msg->y;
+		jstate[unit*4+2] = rot[2];
+		jstate[unit*4+3] = msg->t;
+#ifdef DEBUG_INFO
+		ROS_INFO("UAV %d got state (x, y, dx, dy) = (%f, %f, %f, %f)", unit, msg->x, msg->y, vel[0], vel[1]);
+#endif
+	}
+}
+
+void stopCallback(const std_msgs::String::ConstPtr& msg)
+{
+#ifdef DEBUG_INFO
+	ROS_INFO("Received: PI_STOP.\nSwitching all units to Hover.");
+#endif
+	stop = true;
+}
+
+/*
+
+void timerCallback26(const ros::TimerEvent&)
+{
+	ROS_INFO("go");		
+	go = true;
+	turn = false;
+	onekick = false;
+	
+}	
+
+
+void timerCallback20(const ros::TimerEvent&)
+{
+	ROS_INFO("turn");
+	go = false;
+	turn = true;
+	
+}
+*/
+
+// Main entry point of application
+int main(int argc, char **argv)
+{
+	int i, j;
+	if (argc<2) {
+	  ROS_FATAL("requires xml_file as argument"); 
+	  return 1;
+	}
+	else if (argc==2) {
+		ROS_INFO("using seed from file");
+	}
+	else {
+		seed = atoi(argv[2]);
+		arg_seed = true;
+		ROS_INFO("Using seed = %s", argv[2]);
+	}
+		
+
+	try {
+		ifstream is(argv[1]);
+		// read parameters from xml file
+		using boost::property_tree::ptree;
+		ptree pt;
+		if (!is.is_open()) {
+		  ROS_FATAL("xml config not found"); 
+		  return 1;
+		}
+		read_xml(is, pt);
+
+		// get vector of desired heights			
+		BOOST_FOREACH(ptree::value_type &v,	pt.get_child("takeoffz"))
+			heights.push_back(v.second.get<double>(""));
+
+		// get vector of ids 	
+		BOOST_FOREACH(ptree::value_type &v,	pt.get_child("idunits"))
+			idunits.push_back(v.second.get<string>(""));
+		BOOST_FOREACH(ptree::value_type &v,	pt.get_child("oidunits"))
+			oidunits.push_back(v.second.get<string>(""));
+		if (!arg_seed) {
+			// and seed to start in random position
+			seed =pt.get<int>("seed");
+		}
+		
+		// initialize Joint State variable
+		units = pt.get<int>("units");
+		ounits = pt.get<int>("ounits");
+		jstate.resize( (units+ounits)*pt.get<int>("dimUAVx") );
+
+		// Initialize PI controller
+		pi.Init(pt);
+
+		//double T = pt.get<double>("T");
+
+	} catch (int e) {
+		cout << "Exception" << e << endl;
+	}
+ 
+	// used to safely exit the program
+	stop = false;
+
+	// Initialise the ROS client
+	string nodestr = string("main_mugv");
+	ros::init(argc, argv, nodestr.c_str()); 
+	
+	// Create a node handle, which this C code will use to bind to the ROS server
+	ros::NodeHandle n;
+	
+	// Try and get a list of topics currently being braodcast
+	ros::master::V_TopicInfo topics;
+	int units_found = 0;
+	vector<string> names;
+	vector<string> nameso;
+	vector<ros::Subscriber> top_state;
+	
+	// Iterate over the topics, checking for entities on /hal/<type>/<model>/<id>/Estimate
+	if (ros::master::getTopics(topics)) { 
+		for (ros::master::V_TopicInfo::iterator i = topics.begin(); i != topics.end(); i++) {
+			boost::cmatch mr;
+			if (boost::regex_match(i->name.c_str(), mr, boost::regex("^/hal/ugv/irobotcreate/(.+)/Estimate$"))) {
+				ROS_INFO("%s -> %s", i->name.c_str(), i->datatype.c_str());
+				names.push_back(i->name);
+				units_found++;
+			}
+		}
+	}
+	if (ros::master::getTopics(topics)) { 
+		for (ros::master::V_TopicInfo::iterator i = topics.begin(); i != topics.end(); i++) {
+			boost::cmatch mro;
+			if (boost::regex_match(i->name.c_str(), mro, boost::regex("^/hal/ugv/obstacle/(.+)/Estimate$"))) {
+				ROS_INFO("%s -> %s", i->name.c_str(), i->datatype.c_str());
+				nameso.push_back(i->name);
+				//units_found++;
+			}
+		}
+	}
+	
+	// check if number of units found corresponds to the expected units (defined in the xml)
+	if ( units_found != units ) {
+	  ROS_FATAL("Units found %d does not match units defined in the config %d: ", units_found, units);
+	  return 1;
+	}
+
+	// sort the names (currently required, since the joint state is indexed by unit)
+	sort(names.begin(), names.end());
+	sort(nameso.begin(), nameso.end());
+	
+	// Subscribe to a stop message
+	ros::Subscriber sub_stop = n.subscribe("PI_STOP", 1000, stopCallback);
+
+
+	
+
+
+	// subscribe and add controllers for each unit
+	for (i=0; i<units; i++) {
+
+		// init Finite State Machine
+		state_FSM.push_back(IDLE);
+		
+		ROS_INFO("%s",names[i].c_str());
+
+		// Subscribe to the states of the ugvs (requires explicit)
+		top_state.push_back( n.subscribe<hal_ugv::State>(
+			names[i].c_str(),10,boost::bind(StateCallback, i, _1))
+		);
+		ROS_INFO("%s subscribed!", names[i].c_str());
+
+		// Add TakeOff controller		
+		string takeoff_cmd = string("/hal/ugv/irobotcreate/") + idunits[i] + string("/controller/Takeoff");
+		srvTakeOff.push_back(n.serviceClient<hal_ugv::Takeoff>(takeoff_cmd.c_str()) );
+	
+		// Add Hover controller		
+		string hover_cmd = string("/hal/ugv/irobotcreate/") + idunits[i] + string("/controller/Hover");
+		srvHover.push_back(n.serviceClient<hal_ugv::Hover>(hover_cmd.c_str()) );
+	
+		// Add VelocityHeight controller		
+		string velheight_cmd = string("/hal/ugv/irobotcreate/") + idunits[i] + string("/controller/VelocityHeight");
+		srvVelocityHeight.push_back( n.serviceClient<hal_ugv::VelocityHeight>(velheight_cmd.c_str()) );
+	}	
+	for (i=0; i<ounits; i++) {
+
+		// init Finite State Machine
+	
+		
+		ROS_INFO("%s",nameso[i].c_str());
+
+		// Subscribe to the states of the ugvs (requires explicit)
+		top_state.push_back( n.subscribe<hal_ugv::State>(
+			nameso[i].c_str(),10,boost::bind(StateCallback, i+units, _1))
+		);
+		ROS_INFO("%s subscribed!", nameso[i].c_str());
+
+		
+	}		
+
+
+	// Call Takeoff on each unit
+	for (i=0; i<units; i++) {
+		hal_ugv::Takeoff msgTakeoff;	
+		msgTakeoff.request.altitude = heights[i];
+		if(!srvTakeOff[i].call(msgTakeoff)){
+			ROS_FATAL("NO TAKE OFF!!");
+		} else {
+			ROS_INFO("Taking OFF!!");
+		}
+		state_FSM[i] = TAKEOFF;
+	}
+	//ros::Timer timer1[units] = n.createTimer(ros::Duration(15.0+5.0/3), timerCallback26);
+        //ros::Timer timer2[units];
+
+	// Keep going indefinitely
+	ros::Rate r(15);
+	double TempVel[3], TempEuler[3];
+	go = true;
+	turn = false;
+	onekick = false;
+	oneshot = true;
+
+	float randomtime;
+	
+	gsl_rng_default_seed = seed;
+	rnd = gsl_rng_alloc (gsl_rng_default);
+	
+	double contact[units*(units+ounits)*2];
+	
+	double starttime[units], currenttime[units];
+	bool ifcontact[units];
+	bool initial[units];
+	bool go[units];
+	bool turn[units];
+	bool begincturn[units];
+	for (i=0; i<units; i++){
+	ifcontact[i] = false; initial[i] = true; go[i] = true; turn[i] = false; begincturn[i] = false;}
+	
+	
+    while (ros::ok())
+    {
+    	// Collect all state estimates
+
+		ros::spinOnce();
+		
+/*
+		if (go == true && onekick == false)
+		{
+			
+			onekick = true;
+			timer2 = n.createTimer(ros::Duration(20.0), timerCallback20, oneshot);
+	
+		
+		}*/
+		
+
+		// check stop condittion
+		if (stop)
+		{
+			bool success = true;
+			// Call Hover on each unit
+			for (i=0; i<units; i++) 
+			{
+				hal_ugv::Hover msgHover;	
+				if(!srvHover[i].call(msgHover))
+				{
+					success = false;
+					ROS_FATAL("NO Hover for UAV %d!!", i);
+				} 
+			}
+			if(success)
+			{
+				ROS_INFO("Succesfully switched all units to Hover.");
+				break;
+				return 0;
+			}
+		}
+
+		// Check that units are ready to receive VelocityHeight commands
+		bool ready = true;
+		for (i=0; i<units; i++) {
+			ready = ready && (state_FSM[i] == HOVER);
+		}
+
+		if (ready)
+		{
+			// Path Integral controller (based on VelocityHeight)
+			vec X = jstate;
+			//vec action = pi.computeControl(X);
+			//vec action = pi.computeControlFeedback(X);
+			//vec Xp = pi.predictState(X, action);
+		
+
+
+			// Distribute commands
+
+
+			for (i=0; i<units; i++) {
+				if (initial[i] == true)
+				{
+					starttime[i] = jstate[i*4+3];
+					initial[i] = false;
+					ROS_INFO("initial %lf,%lf",starttime[i],jstate[i*4+3]);
+				}
+				currenttime[i] = jstate[i*4+3];
+				if (ifcontact[i] == false || begincturn[i] == true)
+				{
+					if (go[i] == true && (currenttime[i] - starttime[i] > 20.0))
+					{ 
+						go[i] = false; turn[i] = true; starttime[i] = currenttime[i];
+						//ROS_INFO("1");
+						
+					}
+					else if (turn[i] == true && currenttime[i] - starttime[i] > 5.0/3)
+					{ 
+						go[i] = true; turn[i] = false; starttime[i] = currenttime[i];
+						begincturn[i] = false;
+						//ROS_INFO("2");
+					}
+				}
+				else if (ifcontact[i] == true && begincturn[i] == false)
+				{
+					go[i] = false; turn[i] = true; starttime[i] = currenttime[i]; begincturn[i] = true;
+				}
+					
+				
+				if (go[i] == true)
+				{	randomtime = (gsl_rng_uniform(rnd) - 0.5);
+					TempVel[0] = 0.33;
+					TempVel[1] = 0;
+					TempVel[2] = 0;
+					TempEuler[0] = 0;
+					TempEuler[1] = 0;
+					TempEuler[2] = jstate[i*4+2]+randomtime/2;
+					//ROS_INFO("3");
+				}
+				else
+				{
+				
+					TempVel[0] = 0;
+					TempVel[1] = 0;
+					TempVel[2] = 0;
+					TempEuler[0] = 0;
+					TempEuler[1] = 0;
+					TempEuler[2] = jstate[i*4+2]+3.14/2;
+					//ROS_INFO("4");
+				}
+
+				if (abs(jstate[i*4]) >10 || abs(jstate[i*4+1]) >10)
+				{	
+					TempVel[0] = 0;
+					TempVel[1] = 0;
+					TempVel[2] = 0;
+					TempEuler[0] = 0;
+					TempEuler[1] = 0;
+					TempEuler[2] = 0;
+				
+				}
+				
+
+				
+
+				b2n(TempEuler, TempVel);
+	
+			
+				// convert pi control to VelocityHeight control
+				hal_ugv::VelocityHeight msgVelocityHeight;
+				msgVelocityHeight.request.dx  = TempVel[0];
+				msgVelocityHeight.request.dy  = TempVel[1];
+				msgVelocityHeight.request.z   = TempVel[2];
+				msgVelocityHeight.request.yaw  = TempEuler[2];
+
+
+			
+#ifdef DEBUG_INFO
+				ROS_INFO("UAV %d sent command (dx, dy, z, yaw) = (%f, %f, %f, %f)", 
+					i, msgVelocityHeight.request.dx, msgVelocityHeight.request.dy, 
+					msgVelocityHeight.request.z, msgVelocityHeight.request.yaw);
+#endif
+
+				if(!srvVelocityHeight[i].call(msgVelocityHeight)){
+					ROS_FATAL("NO VELHEIGHT!!");
+				}	
+			}
+
+			for (i=0; i<units; i++)
+			{
+				for (j=0; j<(ounits+units); j++)
+				{
+					contact[i*(ounits+units)+j*2] = sqrt(pow((jstate[j*4+1]-jstate[i*4+1]),2)+pow((jstate[j*4]-jstate[i*4]),2));
+					contact[i*(ounits+units)+j*2+1] = atan2((jstate[j*4+1]-jstate[i*4+1]),(jstate[j*4]-jstate[i*4]))-jstate[i*4+2];
+				
+					if (contact[i*(ounits+units)+j*2] < 0.33 && contact[i*(ounits+units)+j*2] > 0.1&& (abs(contact[i*(ounits+units)+j*2+1])<3.14/2.5))
+					{
+						ifcontact[i]=true;
+						ROS_INFO("irobot %d contact",i);
+						break;
+					}
+					else
+					{
+						ifcontact[i]=false;
+						
+					}
+						
+				}
+			}
+					
+				
+
+		}
+
+		// Sleep
+		r.sleep();
+    }
+	
+	ROS_INFO("Terminating PI control (muav_main).");
+	ros::spin();
+	
+	// Success!
+	return 0;
+}

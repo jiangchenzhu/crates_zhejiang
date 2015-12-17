@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+
+  <model name="pelican">
+    
+    <!-- Will the physics engine move this platform -->  
+    <static>false</static>
+
+    <!-- Initial pose -->
+    <pose>5 5 2  0 0 0</pose>
+
+    <!-- Frame -->
+    <link name="body">
+      <pose>0 0 0.161875 0 0 0</pose>
+      <inertial>
+        <mass>1.680</mass>
+      </inertial>
+      <collision name="body_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>.55</radius>
+            <length>.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="body_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://pelican/meshes/pelican.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Rotors and blades -->
+    <include>
+      <uri>model://blade</uri>
+      <name>blade0</name>
+      <pose>0.241 0.0 0.05 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://blade</uri>
+      <name>blade1</name>
+      <pose>-0.241 0.0 0.05 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://blade</uri>
+      <name>blade2</name>
+      <pose>0.0 -0.241 0.05 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://blade</uri>
+      <name>blade3</name>
+      <pose>0.0 0.241 0.05 0 0 0</pose>
+    </include>
+
+    <!-- Quadrotor dynamics and control -->
+    <plugin name="quadrotor" filename="libsim_quadrotor.so">
+      
+      <!-- Everything will be applied to this link -->
+      <link>body</link>
+
+      <!-- Propulsion -->
+      <propulsion>
+        <dynamics>
+          <low_throttle>300</low_throttle>
+          <max_angvel>2.617993877991494</max_angvel>
+          <pq0>-3.25060e-04</pq0>
+          <pq1>1.79797e+02</pq1>
+          <pq2>-24.3536</pq2>
+          <r0>-4.81783e-03</r0>
+          <r1>-5.08944</r1>
+          <Cth0>6.63881e-01</Cth0>
+          <Cth1>7.44649e-04</Cth1>
+          <Cth2>2.39855e-06</Cth2>
+          <Cvb0>-18.0007</Cvb0>
+          <Cvb1>4.23754</Cvb1>
+          <tau0>3.07321</tau0>
+          <tau1>46.8004</tau1>
+        </dynamics>
+        <control>
+          <roll>
+            <scale>-2291.83118052329</scale>
+            <min>-0.9</min>
+            <max> 0.9</max>
+          </roll>
+          <pitch>
+            <scale>-2291.83118052329</scale>
+            <min>-0.9</min>
+            <max> 0.9</max>
+          </pitch>
+          <yaw>
+            <scale>-460.597254433196</scale>
+            <min>-4.5</min>
+            <max> 4.5</max>
+          </yaw>
+          <throttle>
+            <scale>4097</scale>
+            <min>0.0</min>
+            <max>1.0</max>
+          </throttle>
+          <voltage>
+            <scale>1.0</scale>
+            <min> 9.0</min>
+            <max>12.0</max>
+          </voltage>
+        </control>
+        <errors>
+          <force><white><sigma>0.2</sigma></white></force>
+          <torque><white><sigma>0.2</sigma></white></torque>
+        </errors>
+      </propulsion>
+
+      <!-- Energy parameters -->
+      <energy>
+        <remaining>6000</remaining>
+        <consumption>
+          <base>0.1</base>
+          <flight>6.6</flight>
+        </consumption>
+        <limits>
+          <warn>1000</warn>
+          <land>100</land>
+        </limits>
+        <errors>
+          <consumption><white><sigma>0.002</sigma></white></consumption>
+        </errors>
+      </energy>
+
+      <!-- Drag parameters -->
+      <aerodynamics>
+        <shear>
+          <ma>0.05</ma>
+          <z0>0.15</z0>
+        </shear>
+        <drag>
+          <kuv>-4.97391e-01</kuv>
+          <kw>-1.35341</kw>
+        </drag>
+        <errors>
+          <turbulence><dryden></dryden></turbulence>
+        </errors>
+      </aerodynamics>
+      
+      <!-- Altimeter parameters -->
+      <altimeter>
+        <errors>
+          <altitude><ou><beta>300</beta><sigma>0.003</sigma></ou></altitude>
+        </errors>
+      </altimeter>
+
+      <!-- Compass parameters -->
+      <compass>
+        <errors>
+          <magnetic><white><sigma>0.02</sigma></white></magnetic>
+        </errors>
+      </compass>
+
+      <!-- GNSS parameters -->
+      <gnss>
+        <solver>
+          <minelevation>15</minelevation>
+          <nsiterations>10</nsiterations>
+          <errtolerance>3.e-7</errtolerance>
+          <gps>
+            <use>true</use>
+            <ion>false</ion>
+            <tro>false</tro>
+            <eph>false</eph>
+            <clk>false</clk>
+          </gps>
+          <glo>
+            <use>false</use>
+            <ion>false</ion>
+            <tro>false</tro>
+            <eph>false</eph>
+            <clk>false</clk>
+          </glo>
+        </solver>
+        <errors>
+          <clock><white><sigma>0.02</sigma></white></clock>
+        </errors>
+      </gnss>
+
+      <!-- IMU parameters -->
+      <imu>
+        <errors>
+          <linacc><white><sigma>0.0025</sigma></white></linacc>
+          <angvel><white><sigma>0.0002</sigma></white></angvel>
+        </errors>
+      </imu>
+
+      <!-- Orientation parameters -->
+      <orientation>
+        <errors>
+          <orientation><ou><beta>0.01</beta><sigma>0.0005</sigma></ou></orientation>
+        </errors>
+      </orientation>
+
+    </plugin>
+  
+  </model>
+
+</sdf>

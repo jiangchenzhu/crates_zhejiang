@@ -1,0 +1,36 @@
+Instructions
+------------
+
+1. Make sure that you have successfully built CRATES and that you have 'sourced'
+   the devel environment. i.e. 'source /path/to/crates/devel/setup.bash'
+2. Compile the example code in a terminal:
+   > mkdir build
+   > cd build
+   > cmake ..
+   > make
+3. Switch to a second terminal and run the CRATES simulator
+   > roslaunch sim sw.launch
+4. Return to your original terminal and run the example
+   > ./example
+
+The code will pause the simulation, insert a quadrotor and run the simulator.
+The position of the quadrotor will be published at 1Hz to the console.
+
+PI Control
+----------
+
+1.	For simulation, run init_muav from the build directory.
+		This will insert the quadrotors
+
+	> ./init_muav ../pi_UAV_joint.xml
+
+2.	Once the quadrotors are visible, run main_muav 
+
+	> ./main_muav ../pi_UAV_joint.xml
+
+3.	To turn on/off noise call
+
+	> rosservice call /simulator/Noise true
+
+
+

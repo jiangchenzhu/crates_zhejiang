@@ -1,0 +1,8 @@
+<launch>
+	<arg  name="id" default="UAV0"/>
+	<node name="discovery" pkg="master_discovery_fkie" type="master_discovery" />
+	<node name="sync" pkg="master_sync_fkie" type="master_sync" />
+	<group ns="hal/quadrotor/hummingbird">
+		<node name="$(arg id)" pkg="platform_asctec" type="aci_driver" output="screen"/>
+	</group>
+</launch>

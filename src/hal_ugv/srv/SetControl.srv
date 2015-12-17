@@ -1,0 +1,5 @@
+hal_ugv/Control control
+---
+# RESULT
+bool    success
+string  status

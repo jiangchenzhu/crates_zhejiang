@@ -1,0 +1,10 @@
+<model>
+	<name>windsorpark</name>
+	<version>1.0</version>
+	<sdf version="1.5">model.sdf</sdf>
+	<author>
+		<name>Andrew Symington</name>
+		<email>andrew.c.symington@gmail.com</email>
+	</author>
+	<description>Cumberland Lodge, Great Windsor Park</description>
+</model>

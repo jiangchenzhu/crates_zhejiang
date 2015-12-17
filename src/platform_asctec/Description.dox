@@ -1,0 +1,9 @@
+/**
+
+\defgroup platform_asctec platform_asctec
+\brief An Ascending Technologies flight control system that exposes a quadrotor HAL.
+
+\image html asctec.png "Flight Control System" width=10cm
+
+
+*/

@@ -1,0 +1,4 @@
+$ crontab -e
+Then instead of minute hour day month day of week, simply put @reboot
+
+@reboot /home/complacs/startup.sh
